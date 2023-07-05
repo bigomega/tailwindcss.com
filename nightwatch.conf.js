@@ -11,6 +11,11 @@
 //             __/ |
 //            |___/
 
+console.log('${BROWSERSTACK_USERNAME}')
+console.log('${BROWSERSTACK_ACCESS_KEY}')
+console.log(process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_USERNAME?.length)
+console.log(process.env.BROWSERSTACK_ACCESS_KEY, process.env.BROWSERSTACK_ACCESS_KEY?.length)
+
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
@@ -81,8 +86,8 @@ module.exports = {
           consoleLogs: 'info',
           source: 'nightwatch:sample-sdk:v1.0',
           seleniumVersion: '4.0.0',
-          userName: '---',
-          accessKey: '---',
+          userName: process.env.BROWSERSTACK_USERNAME,
+          accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
         },
       },
 

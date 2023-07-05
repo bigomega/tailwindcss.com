@@ -1,0 +1,22 @@
+name: run-e2e-tests
+run-name: End to end tests in BrowserStack
+on: workflow_dispatch
+  # pull_request:
+  #   types: [opened, edited]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Install Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.2'
+      - name: "Install Packages"
+        run: npm install
+      - name: "Start server on background and run tests"
+        run: |
+          npm run dev -- --port=3000 &
+          sleep 10
+          curl http://localhost:3000 > home.html.tmp &&
+          BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_ACCESS_KEY }} BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }} npm test -- --verbose --env browserstack.chrome

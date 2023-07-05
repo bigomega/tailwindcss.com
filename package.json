@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "nightwatch ./test",
     "export": "next build && next export",
     "format": "prettier '{src,remark,scripts}/**/*.{css,js,mdx}' --write"
   },
