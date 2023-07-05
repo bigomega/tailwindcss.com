@@ -7,6 +7,10 @@
 
 # testing
 /coverage
+/logs
+/tests_output
+browserstack.err
+local.log
 
 # next.js
 /.next/
